@@ -1,6 +1,10 @@
 import { Button } from '@/components/ui/button'
 
-function Hero() {
+interface IHero {
+  onClick: () => void
+}
+
+function Hero({ onClick }: IHero) {
   return (
     <section className="flex flex-col items-center justify-center min-h-[calc(100vh-64px)] text-center px-4">
       <h1 className="text-4xl md:text-6xl font-bold mb-4">
@@ -10,7 +14,7 @@ function Hero() {
         Import and view your Excel spreadsheets instantly. No complicated setup
         required.
       </p>
-      <Button size="lg" className="cursor-pointer">
+      <Button size="lg" className="cursor-pointer" onClick={onClick}>
         Upload Excel
       </Button>
     </section>
