@@ -193,3 +193,29 @@ code {
     @apply bg-background text-foreground;
   }
 }
+
+table {
+  @apply w-full border-collapse text-sm;
+}
+
+tbody {
+  @apply divide-y divide-border;
+}
+
+tbody tr {
+  @apply border-b border-border transition-colors py-3;
+  @apply hover:bg-muted/50;
+}
+
+tbody tr:first-child {
+  @apply bg-primary text-secondary font-semibold;
+}
+
+tbody tr:last-child {
+  @apply border-0;
+}
+
+tbody td {
+  @apply px-4 py-3 align-middle;
+  @apply first:pl-6 last:pr-6;
+}

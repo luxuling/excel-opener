@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { FileText, Upload, X } from 'lucide-react'
+import { Circle, FileText, Upload, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -14,6 +14,8 @@ import { isFileExtensionValid, isFileSizeSafe } from '@/lib/utils'
 interface IUploadDialog {
   isOpen: boolean
   onClose: () => void
+  onConfirm: () => void
+  loading: boolean
   value?: File | null
   onChange?: (file: File | null) => void
   accept?: string
@@ -25,6 +27,8 @@ interface IUploadDialog {
 export function UploadDialog({
   isOpen,
   onClose,
+  onConfirm,
+  loading = false,
   value,
   onChange,
   accept = '*/*',
@@ -199,7 +203,10 @@ export function UploadDialog({
 
         <DialogFooter>
           <Button variant="outline" onClick={onClose}>
-            Close
+            {loading ? <Circle className="animate-spin" /> : 'Close'}
+          </Button>
+          <Button variant="outline" onClick={onConfirm}>
+            Confirm
           </Button>
         </DialogFooter>
       </DialogContent>
