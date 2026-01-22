@@ -22,7 +22,7 @@ function App() {
         isOpen={isUploadOpen}
         onClose={isUploadOpenToggle.toggle}
         value={selectedFile}
-        accept="xlsx"
+        accept=".xls, .xlsx, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         onChange={handleFileChange}
       />
     </div>

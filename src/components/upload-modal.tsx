@@ -9,7 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
-import { isFileSizeSafe } from '@/lib/utils'
+import { isFileExtensionValid, isFileSizeSafe } from '@/lib/utils'
 
 interface IUploadDialog {
   isOpen: boolean
@@ -46,6 +46,11 @@ export function UploadDialog({
 
     if (!isFileSizeSafe(file, maxSize)) {
       setError(`File size must be less than ${maxSize}MB`)
+      return
+    }
+
+    if (!isFileExtensionValid(file, ['xlsx'])) {
+      setError('File with this extension not allowed')
       return
     }
 
@@ -101,7 +106,7 @@ export function UploadDialog({
   return (
     <Dialog open={isOpen}>
       <DialogContent
-        className="sm:max-w-[425px] overflow-hidden"
+        className="max-w-[425px] w-full overflow-hidden"
         showCloseButton={false}
       >
         <DialogHeader>
@@ -164,9 +169,9 @@ export function UploadDialog({
           {value && (
             <div className="flex items-center justify-between p-3 bg-primary/10 rounded-lg border border-gray-200 w-full">
               <div className="flex items-center gap-2">
-                <FileText className="w-5 h-5 text-primary" />
+                <FileText className="w-5 h-5 text-primary flex-shrink-0" />
                 <div>
-                  <p className="text-sm font-medium text-primary text-ellipsis line-clamp-1">
+                  <p className="text-sm font-medium text-primary line-clamp-1">
                     {value.name}
                   </p>
                   <p className="text-xs text-gray-500">
