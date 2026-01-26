@@ -16,3 +16,10 @@ export const isFileExtensionValid = (file: File, allowed: Array<string>) => {
   if (!extension) return false
   return allowed.includes(extension)
 }
+
+export const formatStars = (count: number): string => {
+  if (count >= 1000) {
+    return `${(count / 1000).toFixed(1)}k`
+  }
+  return count.toString()
+}
